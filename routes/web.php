@@ -24,7 +24,7 @@ Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middl
 Route::controller(ProfileController::class)->prefix('admin')->group(function() {
     Route::get('profile/create', 'add');
     Route::get('profile/edit', 'edit');
-    Route::post('profile/create''create' );
+    Route::post('profile/create', 'create');
 });
 Auth::routes();
 
