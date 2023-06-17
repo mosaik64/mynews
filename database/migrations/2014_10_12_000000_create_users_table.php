@@ -21,8 +21,14 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+        User::create([
+            'name' => '森本',
+            'email' => 'morimoto@tech.com',
+            'password' => Hash::make("pass"),
+       ]);
         });
     }
+    
 
     /**
      * Reverse the migrations.

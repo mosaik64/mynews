@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
@@ -16,9 +16,9 @@ class ProfileController extends Controller
     public function create(Request $request)
     {
         
-         $this->validate($request, News::$rules);
+        $this->validate($request, Profile::$rules);
         
-        $news = new News;
+        $news = new Profile;
         $form = $request->all();
         
         // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
@@ -35,8 +35,8 @@ class ProfileController extends Controller
         unset($form['image']);
 
         // データベースに保存する
-        $news->fill($form);
-        $news->save();
+        $Profile->fill($form);
+        $Profile->save();
 
         return redirect('admin/profile/create');
     }
