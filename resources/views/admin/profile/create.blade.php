@@ -17,7 +17,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">name</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="fullname" value="{{ old('fullname') }}">
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">introduction</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                            <textarea class="form-control" name="introduction" rows="20">{{ old('introduction') }}</textarea>
                         </div>
                     </div>
                     @csrf
