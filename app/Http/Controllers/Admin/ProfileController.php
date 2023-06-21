@@ -18,36 +18,49 @@ class ProfileController extends Controller
         
         $this->validate($request, Profile::$rules);
         
-        $news = new Profile;
+        $profile = new Profile;
         $form = $request->all();
         
         // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $news->image_path = basename($path);
-        } else {
-            $news->image_path = null;
-        }
+        // if (isset($form['image'])) {
+        //     $path = $request->file('image')->store('public/image');
+        //     $profile->image_path = basename($path);
+        // } else {
+        //     $profile->image_path = null;
+        // }
 
         // フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
         // フォームから送信されてきたimageを削除する
         unset($form['image']);
-
+        //dd($form);
+        
         // データベースに保存する
-        $Profile->fill($form);
-        $Profile->save();
+        $profile->fill($form);
+        $profile->save();
 
         return redirect('admin/profile/create');
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        $profile = Profile::find($request->id);
+        if (empty($profile)) {
+            abort(404);
+        }
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+         // Validationをかける
+        $this->validate($request, Profile::$rules);
+        // News Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+       
+        
         return redirect('admin/profile/edit');
     }
 }

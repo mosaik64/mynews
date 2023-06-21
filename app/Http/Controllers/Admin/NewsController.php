@@ -55,6 +55,7 @@ class NewsController extends Controller
             $posts = News::all();
         }
         return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
     
     // 以下を追記
     public function edit(Request $request)
@@ -93,7 +94,8 @@ class NewsController extends Controller
         $news->fill($news_form)->save();
 
         return redirect('admin/news');
-         
+    }
+    
          // 以下を追記
     public function delete(Request $request)
     {
