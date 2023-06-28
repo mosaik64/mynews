@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     use HasFactory;
+    
     protected $guarded = array('id');
 
     public static $rules = array(
@@ -16,4 +17,9 @@ class Profile extends Model
         'hobby' => 'required',
         'introduction' => 'required',
     );
+    
+    public function histories()
+    {
+        return $this->hasMany('App\Models\ProfileHistory');
+    }
 }
